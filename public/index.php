@@ -1,9 +1,9 @@
 <?php
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 // Load the .env file if available
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->safeLoad();
 
 /**
