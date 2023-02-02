@@ -1,0 +1,28 @@
+name: redis-debug
+databases:
+  - cluster_name: staging-redis-ams3
+    engine: REDIS
+    name: staging-redis-ams3
+    production: true
+    version: "6"
+envs:
+  - key: REDIS_URL
+    scope: RUN_AND_BUILD_TIME
+    value: ${staging-redis-ams3.DATABASE_URL}
+region: ams
+services:
+  - name: web
+    run_command: |-
+      heroku-php-apache2 public/
+    environment_slug: php
+    github:
+      branch: dev
+      repo: letsbook/redis-debug
+      deploy_on_push: true
+    health_check:
+      http_path: /
+    routes:
+      - path: /
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: basic-xs
