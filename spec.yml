@@ -16,7 +16,7 @@ services:
       heroku-php-apache2 public/
     environment_slug: php
     github:
-      branch: dev
+      branch: master
       repo: letsbook/redis-debug
       deploy_on_push: true
     health_check:
